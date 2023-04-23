@@ -1,6 +1,8 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const generateGibberish = require('./generate_gibberish')
 const app = express()
 
 app.engine('hbs', exphbs({ defaultlayout: 'main', extname: '.hbs' }))
@@ -23,12 +25,16 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
   res.render('index')
 })
 
 app.post('/shortener/', (req, res) => {
-  res.render('show')
+  const url = req.body.url
+  const gibberish = generateGibberish()
+  res.render('show', { gibberish })
 })
 
 app.listen(3000, () => {
