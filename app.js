@@ -27,6 +27,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.post('/shortener/', (req, res) => {
+  res.render('index')
+})
+
 app.listen(3000, () => {
   console.log('app is running on http://localhost:3000')
 })
