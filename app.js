@@ -52,7 +52,14 @@ app.post('/shortener/', (req, res) => {
 app.get('/shortener/:shortenUrl', (req, res) => {
   const shortenUrl = req.params.shortenUrl
   Shortener.findOne({ shortenUrl: shortenUrl })
-    .then(shortener => res.redirect(shortener.url))
+    .lean()
+    .then(shortener => {
+      if (!shortener) {
+        res.render('error')
+      } else {
+        res.redirect(shortener.url)
+      }
+    })
     .catch(error => console.log(error))
 })
 
