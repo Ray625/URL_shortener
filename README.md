@@ -1,4 +1,4 @@
-![myimage](https://github.com/Ray625/shortenerUrl/blob/main/screen.PNG)
+![myimage](https://github.com/Ray625/URL_shortener/blob/main/screen.PNG?raw=true)
 ## 簡介
 使用Node.js並連結資料庫MongoDB所建製之App，可縮短使用者輸入之網址。
 ## 功能
