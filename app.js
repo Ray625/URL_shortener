@@ -10,7 +10,6 @@ app.engine('hbs', exphbs({ defaultlayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
 app.use(routes)
 
 app.listen(3000, () => {
