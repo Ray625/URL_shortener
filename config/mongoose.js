@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const Shortener = require('../shortener')
 
+// 僅在非正式環境時, 使用 dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -15,12 +15,4 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb connected!')
-
-  Shortener.create({
-    url: 'http://google.com',
-    shortenUrl: '9A9PE'
-  })
-    .catch(error => console.log(erroe))
-
-  console.log('done')
 })
