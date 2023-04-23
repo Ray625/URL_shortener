@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.post('/shortener/', (req, res) => {
-  res.render('index')
+app.post('/shorten/', (req, res) => {
+  res.render('show')
 })
 
 app.listen(3000, () => {
