@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const generateGibberish = require('./generate_gibberish')
+const Shortener = require('./models/shortener')
 const app = express()
 
 app.engine('hbs', exphbs({ defaultlayout: 'main', extname: '.hbs' }))
@@ -35,6 +36,13 @@ app.post('/shortener/', (req, res) => {
   const url = req.body.url
   const gibberish = generateGibberish()
   res.render('show', { gibberish })
+})
+
+app.get('/shortener/:shortenUrl', (req, res) => {
+  const shortenUrl = req.params.shortenUrl
+  Shortener.find({ shortenUrl: { $regex: new RegExp(shortenUrl, 's') } })
+    .then(shortener => res.redirect(shortener[0].url))
+    .catch(error => console.log(error))
 })
 
 app.listen(3000, () => {
