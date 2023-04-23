@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const app = express()
 
-app.engine('hbs', exphbs({ defaultlayout: 'main', extname: 'hbs' }))
+app.engine('hbs', exphbs({ defaultlayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 // 僅在非正式環境時, 使用 dotenv
