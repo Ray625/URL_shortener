@@ -35,13 +35,24 @@ app.get('/', (req, res) => {
 app.post('/shortener/', (req, res) => {
   const url = req.body.url
   const gibberish = generateGibberish()
-  res.render('show', { gibberish })
+  Shortener.findOne({ url })
+    .lean()
+    .then(shortener => {
+      if (!shortener) {
+        Shortener.create({ url, shortenUrl: gibberish })
+        shortener = { url, shortenUrl: gibberish }
+        res.render('show', { shortener })
+      } else {
+        res.render('show', { shortener })
+      }
+    })
+    .catch(error => console.log(error))
 })
 
 app.get('/shortener/:shortenUrl', (req, res) => {
   const shortenUrl = req.params.shortenUrl
-  Shortener.find({ shortenUrl: { $regex: new RegExp(shortenUrl, 's') } })
-    .then(shortener => res.redirect(shortener[0].url))
+  Shortener.findOne({ shortenUrl: shortenUrl })
+    .then(shortener => res.redirect(shortener.url))
     .catch(error => console.log(error))
 })
 
