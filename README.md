@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ![myimage](https://github.com/Ray625/URL_shortener/blob/main/screen.PNG)
+=======
+![myimage](https://github.com/Ray625/URL_shortener/blob/main/screen.PNG?raw=true)
+>>>>>>> b67f82ea2c3c17f2b604dca59bb479b6df0bd803
 ## 簡介
 使用Node.js並連結資料庫MongoDB所建製之App，可縮短使用者輸入之網址。
 ## 功能

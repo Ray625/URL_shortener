@@ -21,18 +21,6 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.get('/:shortenUrl', (req, res) => {
-  const shortenUrl = req.params.shortenUrl
-  Shortener.findOne({ shortenUrl: shortenUrl })
-    .lean()
-    .then(shortener => {
-      if (!shortener) {
-        res.render('error')
-      } else {
-        res.redirect(shortener.url)
-      }
-    })
-    .catch(error => console.log(error))
-})
+
 
 module.exports = router
