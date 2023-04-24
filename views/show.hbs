@@ -3,10 +3,20 @@
     <div class="d-flex flex-column align-items-center">
       <div class="mb-3">
         <p class="h5" style="font-weight: 600;">Success!Please use this link:</p>
-        <a href="/{{ shortener.shortenUrl }}" target="_blank">http:localhost:3000/{{
-          shortener.shortenUrl }}</a>
+        <a href="/{{ shortener.shortenUrl }}" target="_blank">
+          <input class="form-control" type="text" value="http:localhost:3000/{{ shortener.shortenUrl }}" id="copylink"
+            readonly>
+        </a>
       </div>
-      <button class="btn btn-primary">Copy</button>
+      <button class="btn btn-primary" onclick="copy()">Copy</button>
     </div>
   </div>
 </div>
+<script>
+  function copy() {
+    const url = document.getElementById('copylink')
+    url.select()
+    navigator.clipboard.writeText(url.value)
+    alert("Copied the url: " + url.value)
+  }
+</script>
